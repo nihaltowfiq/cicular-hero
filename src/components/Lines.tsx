@@ -5,8 +5,8 @@ import { motion } from 'framer-motion';
 import { Fragment } from 'react';
 
 export const Lines = ({ list, radius, active }: Props) => {
-  const centerX = 300; // X coordinate of the center (half of the container's width)
-  const centerY = 300; // Y coordinate of the center (half of the container's height)
+  const centerX = 250; // X coordinate of the center (half of the container's width)
+  const centerY = 250; // Y coordinate of the center (half of the container's height)
 
   return (
     <motion.svg className="absolute top-0 left-0 w-full h-full">

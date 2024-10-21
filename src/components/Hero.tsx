@@ -12,14 +12,22 @@ export function Hero({ data }: { data: DataType[] }) {
     data.filter((_, i) => i !== 0)
   );
   const [active, setActive] = useState<DataType>(() => data[0]);
-  const radius = 220; // Radius for outer circle (distance from inner circle)
+  const radius = 200; // Radius for outer circle (distance from inner circle)
   const innerCircleRadius = 50; // Radius for the inner circle
   const itemsCount = list.length;
+
+  const onItemSwap = (item: DataType, index: number) => {
+    setList((prevState) => {
+      const newData = prevState.map((item, i) => (i === index ? active : item));
+      return newData;
+    });
+    setActive(item);
+  };
 
   return (
     <AnimatePresence>
       <div className="bg-gradient-to-t from-black-dark to-black border border-black-light rounded-xl p-[1.5rem] flex">
-        <div className="relative w-[600px] h-[600px] ">
+        <div className="relative w-[500px] h-[500px] ">
           <Lines active={active} list={list} radius={radius} />
 
           <InnerCircle innerCircleRadius={innerCircleRadius} {...active} />
@@ -36,15 +44,7 @@ export function Hero({ data }: { data: DataType[] }) {
                 {...el}
                 xPos={xPos}
                 yPos={yPos}
-                clickHandler={() => {
-                  setList((prevState) => {
-                    const newData = prevState.map((item, i) =>
-                      i === index ? active : item
-                    );
-                    return newData;
-                  });
-                  setActive(el);
-                }}
+                clickHandler={() => onItemSwap(el, index)}
               />
             );
           })}
