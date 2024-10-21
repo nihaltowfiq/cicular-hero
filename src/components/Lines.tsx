@@ -9,7 +9,10 @@ export const Lines = ({ list, radius, active }: Props) => {
   const centerY = 250; // Y coordinate of the center (half of the container's height)
 
   return (
-    <motion.svg className="absolute top-0 left-0 w-full h-full">
+    <motion.svg
+      key={active.slug}
+      className="absolute top-0 left-0 w-full h-full"
+    >
       {list.map(({ slug }, index) => {
         const angle = (index / list.length) * 360;
         const xPos = centerX + radius * Math.cos((angle * Math.PI) / 180);
@@ -52,8 +55,9 @@ export const Lines = ({ list, radius, active }: Props) => {
                 stroke={`url(#${gradientId})`}
                 strokeWidth="1"
                 initial={{ opacity: 0, pathLength: 0 }}
+                exit={{ opacity: 0, pathLength: 0 }}
                 animate={{ opacity: 1, pathLength: 1 }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 1, delay: 0.5 }}
               />
             </Fragment>
           );

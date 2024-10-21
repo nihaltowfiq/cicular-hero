@@ -3,6 +3,7 @@
 import { DataType } from '@/data';
 import { AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
+import { Information } from './Information';
 import { InnerCircle } from './InnerCircle';
 import { Lines } from './Lines';
 import { OuterCircle } from './OuterCircle';
@@ -25,33 +26,35 @@ export function Hero({ data }: { data: DataType[] }) {
   };
 
   return (
-    <AnimatePresence>
-      <div className="bg-gradient-to-t from-black-dark to-black border border-black-light rounded-xl p-[1.5rem] flex">
-        <div className="relative w-[500px] h-[500px] ">
-          <Lines active={active} list={list} radius={radius} />
+    <div className="bg-gradient-to-t from-black-dark to-black border border-black-light rounded-xl p-[2.5rem] flex justify-between gap-3">
+      <div className="relative w-[500px] h-[500px]">
+        <Lines active={active} list={list} radius={radius} />
 
-          <InnerCircle innerCircleRadius={innerCircleRadius} {...active} />
+        <InnerCircle innerCircleRadius={innerCircleRadius} {...active} />
 
-          {list.map((el, index) => {
-            const angle = (index / itemsCount) * 360;
-            const xPos = radius * Math.cos((angle * Math.PI) / 180);
-            const yPos = radius * Math.sin((angle * Math.PI) / 180);
+        {list.map((el, index) => {
+          const angle = (index / itemsCount) * 360;
+          const xPos = radius * Math.cos((angle * Math.PI) / 180);
+          const yPos = radius * Math.sin((angle * Math.PI) / 180);
 
-            return (
-              <OuterCircle
-                key={index}
-                active={active}
-                {...el}
-                xPos={xPos}
-                yPos={yPos}
-                clickHandler={() => onItemSwap(el, index)}
-              />
-            );
-          })}
-        </div>
-
-        <div></div>
+          return (
+            <OuterCircle
+              key={index}
+              active={active}
+              {...el}
+              xPos={xPos}
+              yPos={yPos}
+              clickHandler={() => onItemSwap(el, index)}
+            />
+          );
+        })}
       </div>
-    </AnimatePresence>
+
+      <div>
+        <AnimatePresence mode="wait">
+          {active && <Information key={active.slug} {...active} />}
+        </AnimatePresence>
+      </div>
+    </div>
   );
 }
