@@ -31,12 +31,11 @@ export function Hero({ data }: { data: DataType[] }) {
     <div className="mx-auto bg-gradient-to-t from-black-dark to-black border border-black-light rounded-xl p-[1rem] lg:p-[2.5rem] flex flex-col lg:flex-row justify-between gap-[3rem] lg:gap-4">
       <div
         style={{
-          height: containerHeight,
           width: containerWidth,
+          height: containerHeight,
         }}
         className="relative mx-auto lg:mx-0"
       >
-        {/* w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] */}
         <Lines active={active} list={list} />
 
         <InnerCircle {...active} />

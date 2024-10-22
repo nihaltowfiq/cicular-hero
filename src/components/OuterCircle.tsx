@@ -27,7 +27,7 @@ export const OuterCircle = ({
     <AnimatePresence mode="wait">
       <motion.div
         key={slug}
-        className="absolute w-[80px] h-[80px]"
+        className="absolute w-[60px] h-[60px] lg:w-[80px] lg:h-[80px]"
         style={{
           top: `calc(50% + ${yPos}px)`,
           left: `calc(50% + ${xPos}px)`,
@@ -47,48 +47,44 @@ export const OuterCircle = ({
                 exit={{ scale: 0, opacity: 0 }}
                 transition={{ duration: 1 }}
                 className={cn(
-                  'border cursor-pointer z-10 rounded-full p-2 border-black',
+                  'border relative cursor-pointer z-10 text-center rounded-full hover:border-pink border-black aspect-square',
                   {
-                    'border-black-light hover:border-pink bg-black bg-gradient-to-tr from-black to-[#1f1d22] drop-shadow-lg':
+                    'border-black-light bg-black bg-gradient-to-tr from-black to-[#1f1d22] drop-shadow-lg':
                       relationSlugs.includes(slug),
                   }
                 )}
               >
-                <Image
-                  src={logo}
-                  alt={name}
-                  height={70}
-                  width={70}
-                  className="object-cover"
-                />
+                <Image fill src={logo} alt={name} className="object-cover" />
               </motion.div>
             </TooltipTrigger>
             <TooltipContent content="bottom">
-              <div className="p-3 w-full text-[0.75rem]">
+              <div className="py-3 px-2 w-full text-[0.75rem]">
                 <div>
                   <p className="text-gray-500">{name} Bridge Volume:</p>
-                  <p className="font-medium">
+                  <p className="font-semibold text-[0.85rem] mt-1">
                     ${info.bridge_volume.toLocaleString()}
                   </p>
                 </div>
                 <div className="flex items-center justify-between pt-1">
                   <Image
                     src={active.logo}
-                    height={12}
-                    width={12}
+                    height={22}
+                    width={22}
                     alt={active.name}
                   />
-                  <Image src={logo} height={12} width={12} alt={name} />
+                  <Image src={logo} height={22} width={22} alt={name} />
                 </div>
 
                 <div className="flex mt-1">
                   <div className="h-1 w-[30%] bg-purple"></div>
                   <div className="h-1 w-[70%] bg-pink"></div>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center gap-2 mt-2">
                   <div>
                     <p className="text-gray-500">From {active.name}</p>
-                    <p>${active.info.bridge_volume.toLocaleString()}</p>
+                    <p className="text-[0.85rem] mt-1 font-semibold">
+                      ${active.info.bridge_volume.toLocaleString()}
+                    </p>
                   </div>
                   <Image
                     src="/assets/arrow-left-right.svg"
@@ -98,7 +94,9 @@ export const OuterCircle = ({
                   />
                   <div>
                     <p className="text-gray-500">To {name}</p>
-                    <p>${info.bridge_volume.toLocaleString()}</p>
+                    <p className="text-[0.85rem] mt-1 font-semibold">
+                      ${info.bridge_volume.toLocaleString()}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -106,7 +104,9 @@ export const OuterCircle = ({
           </Tooltip>
         </TooltipProvider>
 
-        <p className="text-center whitespace-nowrap">{name}</p>
+        <p className="fixed text-xs lg:text-sm top-full left-0 right-0 text-center lg:whitespace-nowrap">
+          {name}
+        </p>
       </motion.div>
     </AnimatePresence>
   );

@@ -49,7 +49,7 @@ export const Lines = ({ list, active }: Props) => {
                 </linearGradient>
               </defs>
               <motion.line
-                key={index}
+                key={`main-${index}`}
                 x1={centerX}
                 y1={centerY}
                 x2={xPos}
@@ -60,6 +60,28 @@ export const Lines = ({ list, active }: Props) => {
                 exit={{ opacity: 0, pathLength: 0 }}
                 animate={{ opacity: 1, pathLength: 1 }}
                 transition={{ duration: 1, delay: 0.5 }}
+              />
+
+              <motion.circle
+                key={`dot-${index}`}
+                cx={centerX}
+                cy={centerY}
+                fill="#eeb6ff"
+                animate={{
+                  opacity: 1,
+                  r: '1', // Radius of the moving dot after animation
+                  cx: [centerX, xPos], // Move along the X-axis from center to end
+                  cy: [centerY, yPos], // Move along the Y-axis from center to end
+                }}
+                transition={{
+                  duration: 1.5,
+                  ease: 'easeInOut',
+                  repeat: Infinity,
+                  repeatType: 'loop',
+                  delay: 1,
+                }}
+                initial={{ opacity: 0, r: '0' }}
+                exit={{ opacity: 0, r: '0' }}
               />
             </Fragment>
           );

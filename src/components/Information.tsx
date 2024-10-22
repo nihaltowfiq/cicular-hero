@@ -12,6 +12,12 @@ import {
 } from './ui/accordion';
 
 export const Information = ({ name, relations, logo, info }: DataType) => {
+  const iconMapping: Record<string, string> = {
+    bridge_volume: '/link-circle.png',
+    inbound_volume: '/receive-square.png',
+    outbound_volume: '/send-sqaure.png',
+  };
+
   return (
     <motion.div
       className="border border-black-light p-4 rounded-lg w-full lg:w-[300px]"
@@ -120,6 +126,8 @@ export const Information = ({ name, relations, logo, info }: DataType) => {
         {Object.entries(info).map(([key, value], i) => {
           if (key === 'active_users') return null;
 
+          console.log(iconMapping[key]);
+
           return (
             <div
               key={i}
@@ -128,10 +136,10 @@ export const Information = ({ name, relations, logo, info }: DataType) => {
               <div className="flex justify-between">
                 <div className="flex gap-2">
                   <Image
-                    src="/assets/information.svg"
                     alt={name}
                     width={18}
                     height={18}
+                    src={iconMapping[key]}
                   />
                   <p className="text-gray-500">
                     {key == 'bridge_volume' ? `Total ` : ''}

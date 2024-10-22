@@ -31,10 +31,10 @@ export function useHeroMeasures(): ReturnType {
     sm: {
       radius: 120, // Radius for outer circle (distance from inner circle)
       innerCircleRadius: 25,
-      centerX: 160, // X coordinate of the center (half of the container's width)
-      centerY: 160, // Y coordinate of the center (half of the container's height)
-      containerHeight: 320,
-      containerWidth: 320,
+      centerX: 170, // X coordinate of the center (half of the container's width)
+      centerY: 170, // Y coordinate of the center (half of the container's height)
+      containerHeight: 340,
+      containerWidth: 340,
     },
   };
 
