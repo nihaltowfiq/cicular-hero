@@ -2,6 +2,44 @@ import { DataType } from './types';
 
 export const data: DataType[] = [
   {
+    name: 'Ethereum',
+    slug: 'ethereum',
+    logo: '/ethereum.png',
+    website: 'https://ethereum.org/',
+    relations: [
+      {
+        name: 'WitnessChain',
+        slug: 'witnesschain',
+        logo: '/witnesschain.png',
+        website: 'https://witnesschain.com/',
+        info: {
+          bridge_volume: 1200000000,
+          inbound_volume: 1200000000,
+          outbound_volume: 1200000000,
+          active_users: 1200000000,
+        },
+      },
+      {
+        name: 'Astar zkEVM',
+        slug: 'astar',
+        logo: '/astar_zkevm.png',
+        website: 'https://astar.network/',
+        info: {
+          bridge_volume: 1200000000,
+          inbound_volume: 1200000000,
+          outbound_volume: 1200000000,
+          active_users: 1200000000,
+        },
+      },
+    ],
+    info: {
+      bridge_volume: 1200000000,
+      inbound_volume: 1200000000,
+      outbound_volume: 1200000000,
+      active_users: 1200000000,
+    },
+  },
+  {
     name: 'WitnessChain',
     slug: 'witnesschain',
     logo: '/witnesschain.png',
@@ -326,44 +364,6 @@ export const data: DataType[] = [
         slug: 'polygon-zkevm',
         logo: '/polygon_zkevm.png',
         website: 'https://polygon.technology/',
-        info: {
-          bridge_volume: 1200000000,
-          inbound_volume: 1200000000,
-          outbound_volume: 1200000000,
-          active_users: 1200000000,
-        },
-      },
-    ],
-    info: {
-      bridge_volume: 1200000000,
-      inbound_volume: 1200000000,
-      outbound_volume: 1200000000,
-      active_users: 1200000000,
-    },
-  },
-  {
-    name: 'Ethereum',
-    slug: 'ethereum',
-    logo: '/ethereum.png',
-    website: 'https://ethereum.org/',
-    relations: [
-      {
-        name: 'WitnessChain',
-        slug: 'witnesschain',
-        logo: '/witnesschain.png',
-        website: 'https://witnesschain.com/',
-        info: {
-          bridge_volume: 1200000000,
-          inbound_volume: 1200000000,
-          outbound_volume: 1200000000,
-          active_users: 1200000000,
-        },
-      },
-      {
-        name: 'Astar zkEVM',
-        slug: 'astar',
-        logo: '/astar_zkevm.png',
-        website: 'https://astar.network/',
         info: {
           bridge_volume: 1200000000,
           inbound_volume: 1200000000,

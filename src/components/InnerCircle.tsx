@@ -25,7 +25,7 @@ export const InnerCircle = ({ logo, slug, name, isMount }: Props) => {
         }}
         exit={{ scale: 1, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 0.8 }}
       >
         <div className="relative h-full w-full z-10 rounded-full bg-gradient-to-tr from-black to-[#1f1d22] drop-shadow-lg ">
           <Image fill src={logo} alt={name} className="object-cover" />

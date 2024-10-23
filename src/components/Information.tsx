@@ -27,10 +27,10 @@ export const Information = ({
   return (
     <motion.div
       className="border border-black-light p-4 rounded-lg w-full lg:w-[300px]"
-      initial={{ x: '50%', opacity: 0 }}
+      initial={{ x: '-50%', opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
-      exit={{ x: '-50%', opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      exit={{ opacity: 0, x: '50%' }}
+      transition={{ duration: 0.2, delay: 1, ease: 'linear' }}
     >
       <div className="flex items-center gap-3 mb-3">
         <Image src={logo} alt={name} width={56} height={56} />
@@ -61,7 +61,7 @@ export const Information = ({
                     height={32}
                     className="w-8 h-8 rounded-full border-gray-800"
                   />
-                  <div className="flex ">
+                  <div className="flex">
                     {relations.map(({ name, logo }, i) => (
                       <Image
                         key={i}

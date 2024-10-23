@@ -1,7 +1,7 @@
 'use client';
 
 import { useHeroMeasures } from '@/lib/hooks';
-import { DataType, Nullish } from '@/lib/types';
+import { DataType } from '@/lib/types';
 import { motion } from 'framer-motion';
 import { Fragment } from 'react';
 
@@ -61,7 +61,7 @@ export const Lines = ({ list, active }: Props) => {
                 initial={{ opacity: 0, pathLength: 0 }}
                 exit={{ opacity: 0, pathLength: 0 }}
                 animate={{ opacity: 1, pathLength: 1 }}
-                transition={{ duration: 1, delay: 0.5 }}
+                transition={{ duration: 1, delay: 0.8 }}
               />
 
               <motion.circle
@@ -95,5 +95,5 @@ export const Lines = ({ list, active }: Props) => {
 
 type Props = {
   active: DataType;
-  list: Nullish<DataType>[];
+  list: DataType[];
 };

@@ -1,7 +1,7 @@
 'use client';
 
 import { useHeroMeasures } from '@/lib/hooks';
-import { DataType, Nullish } from '@/lib/types';
+import { DataType } from '@/lib/types';
 import { AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { Information } from './Information';
@@ -10,8 +10,7 @@ import { Lines } from './Lines';
 import { OuterCircle } from './OuterCircle';
 
 export function Hero({ data }: { data: DataType[] }) {
-  const [list, setList] = useState<Nullish<DataType>[]>(() =>
-    // data.map((el, i) => (i === 0 ? null : el))
+  const [list, setList] = useState<DataType[]>(() =>
     data.filter((_, i) => i !== 0)
   );
   const [active, setActive] = useState<DataType>(() => data[0]);
@@ -25,14 +24,8 @@ export function Hero({ data }: { data: DataType[] }) {
 
   const itemsCount = list.length;
 
-  const onItemSwap = (item: Nullish<DataType>, index: number) => {
+  const onItemSwap = (item: DataType, index: number) => {
     setList((prevState) => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      // const newData = prevState.map((el) => (el === null ? active : el)) as any;
-      // newData[index] = null;
-
-      // console.log(newData);
-
       const newData = prevState.map((item, i) => (i === index ? active : item));
       return newData;
     });
@@ -40,7 +33,7 @@ export function Hero({ data }: { data: DataType[] }) {
   };
 
   return (
-    <div className="mx-auto bg-gradient-to-t from-black-dark to-black border border-black-light rounded-xl p-[1rem] lg:p-[2.5rem] flex flex-col lg:flex-row justify-between gap-[3rem] lg:gap-4">
+    <div className="mx-auto bg-gradient-to-t from-black-dark to-black border border-black-light rounded-xl p-[1rem] lg:p-[2.5rem] xl:pb-[3.5rem] lg:items-center flex flex-col lg:flex-row justify-between gap-[3rem] lg:gap-4 xl:pl-[6.5rem]">
       <div
         style={{
           width: containerWidth,
@@ -57,21 +50,13 @@ export function Hero({ data }: { data: DataType[] }) {
           const xPos = radius * Math.cos((angle * Math.PI) / 180);
           const yPos = radius * Math.sin((angle * Math.PI) / 180);
 
-          if (el === null)
-            return (
-              <div
-                key={index}
-                className="absolute w-[60px] h-[60px] lg:w-[80px] lg:h-[80px]"
-              ></div>
-            );
-
           return (
             <OuterCircle
-              key={index}
-              active={active}
               {...el}
+              key={index}
               xPos={xPos}
               yPos={yPos}
+              active={active}
               clickHandler={() => onItemSwap(el, index)}
             />
           );

@@ -35,18 +35,17 @@ export const OuterCircle = ({
           left: `calc(50% + ${xPos}px)`,
           top: `calc(50% + ${yPos}px)`,
         }}
-        transition={{ duration: 1, ease: 'linear' }}
+        transition={{ duration: 0.8, ease: 'linear' }}
         exit={{ scale: 1, opacity: 1, top: '50%', left: '50%' }}
         whileHover={{ scale: 1.1 }}
-        onClick={clickHandler}
       >
         <TooltipProvider>
           <Tooltip>
-            <TooltipTrigger asChild>
+            <TooltipTrigger asChild onClick={clickHandler}>
               <motion.div
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 1 }}
+                transition={{ duration: 0.8 }}
                 className={cn(
                   'border relative cursor-pointer z-10 text-center rounded-full hover:border-pink border-black aspect-square',
                   {
@@ -58,7 +57,11 @@ export const OuterCircle = ({
                 <Image fill src={logo} alt={name} className="object-cover" />
               </motion.div>
             </TooltipTrigger>
-            <TooltipContent content="bottom" align="start">
+            <TooltipContent
+              side="bottom"
+              align="start"
+              className="!bottom-full"
+            >
               <div className="py-3 px-2 w-full text-[0.75rem]">
                 <div>
                   <p className="text-gray-500">{name} Bridge Volume:</p>
@@ -118,4 +121,5 @@ type Props = DataType & {
   yPos: number;
   active: DataType;
   clickHandler: () => void;
+  isMount?: boolean;
 };
