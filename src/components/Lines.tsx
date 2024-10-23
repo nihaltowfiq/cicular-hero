@@ -1,7 +1,7 @@
 'use client';
 
 import { useHeroMeasures } from '@/lib/hooks';
-import { DataType } from '@/lib/types';
+import { DataType, Nullish } from '@/lib/types';
 import { motion } from 'framer-motion';
 import { Fragment } from 'react';
 
@@ -15,14 +15,16 @@ export const Lines = ({ list, active }: Props) => {
       key={active.slug}
       className="absolute top-0 left-0 w-full h-full"
     >
-      {list.map(({ slug }, index) => {
+      {list.map((el, index) => {
         const angle = (index / list.length) * 360;
         const xPos = centerX + radius * Math.cos((angle * Math.PI) / 180);
         const yPos = centerY + radius * Math.sin((angle * Math.PI) / 180);
 
         const gradientId = `gradient-${index}`;
 
-        if (relationSlugs.includes(slug)) {
+        if (!el) return null;
+
+        if (relationSlugs.includes(el.slug)) {
           return (
             <Fragment key={index}>
               <defs>
@@ -93,5 +95,5 @@ export const Lines = ({ list, active }: Props) => {
 
 type Props = {
   active: DataType;
-  list: DataType[];
+  list: Nullish<DataType>[];
 };

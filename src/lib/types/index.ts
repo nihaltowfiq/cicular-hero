@@ -1,3 +1,5 @@
+export type Nullish<T> = T | null;
+
 export type DataType = {
   name: string;
   slug: string;

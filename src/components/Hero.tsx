@@ -1,30 +1,42 @@
 'use client';
 
 import { useHeroMeasures } from '@/lib/hooks';
-import { DataType } from '@/lib/types';
+import { DataType, Nullish } from '@/lib/types';
 import { AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Information } from './Information';
 import { InnerCircle } from './InnerCircle';
 import { Lines } from './Lines';
 import { OuterCircle } from './OuterCircle';
 
 export function Hero({ data }: { data: DataType[] }) {
-  const [list, setList] = useState<DataType[]>(() =>
+  const [list, setList] = useState<Nullish<DataType>[]>(() =>
+    // data.map((el, i) => (i === 0 ? null : el))
     data.filter((_, i) => i !== 0)
   );
   const [active, setActive] = useState<DataType>(() => data[0]);
+  const [isMount, setMount] = useState(false);
+
+  useEffect(() => {
+    setMount(true);
+  }, []);
 
   const { radius, containerWidth, containerHeight } = useHeroMeasures();
 
   const itemsCount = list.length;
 
-  const onItemSwap = (item: DataType, index: number) => {
+  const onItemSwap = (item: Nullish<DataType>, index: number) => {
     setList((prevState) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // const newData = prevState.map((el) => (el === null ? active : el)) as any;
+      // newData[index] = null;
+
+      // console.log(newData);
+
       const newData = prevState.map((item, i) => (i === index ? active : item));
       return newData;
     });
-    setActive(item);
+    setActive(item as DataType);
   };
 
   return (
@@ -38,12 +50,20 @@ export function Hero({ data }: { data: DataType[] }) {
       >
         <Lines active={active} list={list} />
 
-        <InnerCircle {...active} />
+        <InnerCircle isMount={isMount} {...active} />
 
         {list.map((el, index) => {
           const angle = (index / itemsCount) * 360;
           const xPos = radius * Math.cos((angle * Math.PI) / 180);
           const yPos = radius * Math.sin((angle * Math.PI) / 180);
+
+          if (el === null)
+            return (
+              <div
+                key={index}
+                className="absolute w-[60px] h-[60px] lg:w-[80px] lg:h-[80px]"
+              ></div>
+            );
 
           return (
             <OuterCircle

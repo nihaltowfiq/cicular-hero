@@ -11,7 +11,13 @@ import {
   AccordionTrigger,
 } from './ui/accordion';
 
-export const Information = ({ name, relations, logo, info }: DataType) => {
+export const Information = ({
+  name,
+  relations,
+  website,
+  logo,
+  info,
+}: DataType) => {
   const iconMapping: Record<string, string> = {
     bridge_volume: '/link-circle.png',
     inbound_volume: '/receive-square.png',
@@ -31,7 +37,7 @@ export const Information = ({ name, relations, logo, info }: DataType) => {
 
         <div>
           <p>{name}</p>
-          <p className="text-gray-500">https://google.com/</p>
+          <p className="text-gray-500">{website}</p>
         </div>
       </div>
 
@@ -125,8 +131,6 @@ export const Information = ({ name, relations, logo, info }: DataType) => {
 
         {Object.entries(info).map(([key, value], i) => {
           if (key === 'active_users') return null;
-
-          console.log(iconMapping[key]);
 
           return (
             <div

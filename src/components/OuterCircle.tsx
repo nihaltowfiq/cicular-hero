@@ -28,14 +28,15 @@ export const OuterCircle = ({
       <motion.div
         key={slug}
         className="absolute w-[60px] h-[60px] lg:w-[80px] lg:h-[80px]"
-        style={{
-          top: `calc(50% + ${yPos}px)`,
+        initial={{ top: '50%', left: '50%', scale: 0, x: '-50%', y: '-50%' }}
+        animate={{
+          scale: 1,
+          opacity: 1,
           left: `calc(50% + ${xPos}px)`,
+          top: `calc(50% + ${yPos}px)`,
         }}
-        initial={{ scale: 0, x: '-50%', y: '-50%' }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.4 }}
-        exit={{ scale: 0, opacity: 0 }}
+        transition={{ duration: 1, ease: 'linear' }}
+        exit={{ scale: 1, opacity: 1, top: '50%', left: '50%' }}
         whileHover={{ scale: 1.1 }}
         onClick={clickHandler}
       >
@@ -44,7 +45,7 @@ export const OuterCircle = ({
             <TooltipTrigger asChild>
               <motion.div
                 animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0, opacity: 0 }}
+                exit={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 1 }}
                 className={cn(
                   'border relative cursor-pointer z-10 text-center rounded-full hover:border-pink border-black aspect-square',
@@ -57,7 +58,7 @@ export const OuterCircle = ({
                 <Image fill src={logo} alt={name} className="object-cover" />
               </motion.div>
             </TooltipTrigger>
-            <TooltipContent content="bottom">
+            <TooltipContent content="bottom" align="start">
               <div className="py-3 px-2 w-full text-[0.75rem]">
                 <div>
                   <p className="text-gray-500">{name} Bridge Volume:</p>
