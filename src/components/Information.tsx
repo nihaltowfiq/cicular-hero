@@ -30,7 +30,7 @@ export const Information = ({
       initial={{ x: '-50%', opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       exit={{ opacity: 0, x: '50%' }}
-      transition={{ duration: 0.2, delay: 1, ease: 'linear' }}
+      transition={{ duration: 0.1, delay: 0, ease: 'linear' }}
     >
       <div className="flex items-center gap-3 mb-3">
         <Image src={logo} alt={name} width={56} height={56} />
@@ -50,7 +50,8 @@ export const Information = ({
             <AccordionTrigger className="hover:no-underline items-start ">
               <div className="w-full">
                 <p className="text-left mb-2 text-gray-400">
-                  {relations.length} connections point
+                  {relations.length} bridge connection
+                  {relations.length > 1 ? 's' : ''}
                 </p>
 
                 <div className="flex items-center justify-between -mr-4">

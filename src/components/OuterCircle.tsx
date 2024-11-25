@@ -35,7 +35,7 @@ export const OuterCircle = ({
           left: `calc(50% + ${xPos}px)`,
           top: `calc(50% + ${yPos}px)`,
         }}
-        transition={{ duration: 0.8, ease: 'linear' }}
+        transition={{ duration: 0.2, ease: 'linear' }}
         exit={{ scale: 1, opacity: 1, top: '50%', left: '50%' }}
         whileHover={{ scale: 1.1 }}
       >
